@@ -1,18 +1,18 @@
-import orchestrator from 'tests/orchestrator.js';
+import orchestrator from "tests/orchestrator.js";
 
 beforeAll(async () => {
   await orchestrator.waitForAllServices();
   await orchestrator.clearDatabase();
 });
 
-describe('POST /api/v1/migrations', () => {
-  describe('Anonymous user', () => {
-    describe('Running pending migrations', () => {
-      test('For the first time', async () => {
+describe("POST /api/v1/migrations", () => {
+  describe("Anonymous user", () => {
+    describe("Running pending migrations", () => {
+      test("For the first time", async () => {
         const response1 = await fetch(
-          'http://localhost:3000/api/v1/migrations',
+          "http://localhost:3000/api/v1/migrations",
           {
-            method: 'POST'
+            method: "POST"
           }
         );
         expect(response1.status).toBe(201);
@@ -22,11 +22,11 @@ describe('POST /api/v1/migrations', () => {
         expect(Array.isArray(response1Body)).toBe(true);
         expect(response1Body.length).toBeGreaterThan(0);
       });
-      test('For the second time', async () => {
+      test("For the second time", async () => {
         const response2 = await fetch(
-          'http://localhost:3000/api/v1/migrations',
+          "http://localhost:3000/api/v1/migrations",
           {
-            method: 'POST'
+            method: "POST"
           }
         );
         expect(response2.status).toBe(200);
