@@ -1,4 +1,4 @@
-import { Client } from 'pg';
+import { Client } from "pg";
 
 async function query(queryObject) {
   let client;
@@ -7,10 +7,11 @@ async function query(queryObject) {
     const result = await client.query(queryObject);
     return result;
   } catch (error) {
+    console.log("\n Erro dentro do catch do database.js:");
     console.error(error);
     throw error;
   } finally {
-    await client.end();
+    await client?.end();
   }
 }
 
@@ -39,5 +40,5 @@ function getSSLValues() {
     };
   }
 
-  return process.env.NODE_ENV === 'production' ? true : false;
+  return process.env.NODE_ENV === "production" ? true : false;
 }
